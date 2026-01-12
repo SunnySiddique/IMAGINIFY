@@ -14,6 +14,9 @@ export async function POST(req: NextRequest) {
 
   try {
     evt = await verifyWebhook(req);
+
+    console.log("Event type:", evt.type);
+    console.log("Event data:", evt.data);
   } catch (error) {
     console.error("Webhook verification failed:", error);
     return new Response("Invalid webhook signature", { status: 400 });
