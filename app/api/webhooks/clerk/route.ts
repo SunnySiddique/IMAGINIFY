@@ -4,7 +4,7 @@ import { verifyWebhook } from "@clerk/nextjs/webhooks";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
-  const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET;
+  const WEBHOOK_SECRET = process.env.CLERK_WEBHOOK_SECRET!;
 
   if (!WEBHOOK_SECRET) {
     throw new Error("Missing WEBHOOK_SECRET in environment variables");
