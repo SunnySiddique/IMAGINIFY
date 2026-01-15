@@ -17,7 +17,6 @@ export async function createUser(user: CreateUserParams) {
   } catch (error) {
     console.error("Error creating user:", error);
     handleError(error);
-    throw error; // ⭐ Re-throw the error
   }
 }
 
@@ -34,7 +33,6 @@ export async function getUserById(userId: string) {
   } catch (error) {
     console.error("Error getting user:", error);
     handleError(error);
-    throw error; // ⭐ Re-throw the error
   }
 }
 
@@ -53,7 +51,6 @@ export async function updateUser(clerkId: string, user: UpdateUserParams) {
   } catch (error) {
     console.error("Error updating user:", error);
     handleError(error);
-    throw error; // ⭐ Re-throw the error
   }
 }
 
@@ -73,6 +70,25 @@ export async function deleteUser(clerkId: string) {
   } catch (error) {
     console.error("Error deleting user:", error);
     handleError(error);
-    throw error; // ⭐ Re-throw the error
+  }
+}
+
+// USE CREDITS
+
+export async function updateCredits(userId: string, creditFee: number) {
+  try {
+    await connectToDB();
+
+    const updatedUserCredits = await User.findOneAndUpdate(
+      { _id: userId },
+      { $inc: { creditBalance: creditFee } },
+      { new: true }
+    );
+
+    if (!updateCredits) throw new Error("user credits updsate failed");
+
+    return JSON.parse(JSON.stringify(updatedUserCredits));
+  } catch (error) {
+    handleError(error);
   }
 }

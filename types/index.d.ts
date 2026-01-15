@@ -24,8 +24,8 @@ export type AddImageParams = {
     width: number;
     height: number;
     config: any;
-    secureURL: string;
-    transformationURL: string;
+    secureUrl: string;
+    transformationUrl: string;
     aspectRatio: string | undefined;
     prompt: string | undefined;
     color: string | undefined;
